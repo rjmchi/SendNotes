@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,12 @@ class NoteFactory extends Factory
      */
     public function definition(): array
     {
+        $userIds = User::all()->pluck('id')->toArray();
         return [
-            //
+            'title' => fake()->sentence(),
+            'body'=> fake()->paragraph(),
+            'send_date'=>fake()->dateTimeBetween('-1 day', '+1 week'),
+            'user_id' => fake()->randomElement($userIds),
         ];
     }
 }
