@@ -11,5 +11,5 @@ class Note extends Model
     /** @use HasFactory<\Database\Factories\NoteFactory> */
     use HasFactory, HasUuids;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 }
