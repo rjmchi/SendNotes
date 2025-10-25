@@ -23,6 +23,7 @@ class NoteFactory extends Factory
             'body'=> fake()->paragraph(),
             'send_date'=>fake()->dateTimeBetween('-1 day', '+1 week'),
             'user_id' => fake()->randomElement($userIds),
+            'recipient'=>  fake()->firstName(). ' ' . fake()->lastName(),
         ];
     }
 }

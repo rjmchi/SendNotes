@@ -17,12 +17,15 @@ class DatabaseSeeder extends Seeder
         User::truncate();
         Note::truncate();
         User::factory(3)->create();
-        Note::factory(10)->create();
 
         User::factory()->create([
             'name' => 'Robert',
             'email' => 'robert@test.com',
             'password'=> 'kether1330',
         ]);
+    $this->call([
+        NoteSeeder::class,
+    ]);
+
     }
 }
