@@ -17,13 +17,19 @@ class NoteFactory extends Factory
      */
     public function definition(): array
     {
-        $userIds = User::all()->pluck('id')->toArray();
+        $userId = User::all()->pluck('id')->toArray();
+        $recipient = User::orderBy('random')->get();
+        if ($recipient[0]->id != $userId){
+            $email = $recipient[0]->email;
+        }else {
+            $email = $recipient[1]->email;
+        }
         return [
             'title' => fake()->sentence(),
             'body'=> fake()->paragraph(),
             'send_date'=>fake()->dateTimeBetween('-1 day', '+1 week'),
-            'user_id' => fake()->randomElement($userIds),
-            'recipient'=>  fake()->firstName(). ' ' . fake()->lastName(),
+            'user_id' => fake()->randomElement($userId),
+            'recipient'=>  $email,
         ];
     }
 }
