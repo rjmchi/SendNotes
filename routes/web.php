@@ -21,9 +21,13 @@ Route::view('notes/create', 'notes.create')
     ->middleware(['auth', 'verified'])
     ->name('notes.create');
 
-    Route::view('notes/show', 'notes.show')
+Route::view('notes/show', 'notes.show')
     ->middleware(['auth', 'verified'])
     ->name('notes.show');
+
+Volt::route('notes/{note}/edit', 'notes.edit')
+    ->middleware(['auth', 'verified'])
+    ->name('notes.edit');
 
 // Route::resource('notes', NoteController::class)->middleware(['auth', 'verified']);
 

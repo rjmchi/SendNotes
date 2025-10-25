@@ -13,6 +13,7 @@ new class extends Component {
     public function delete($noteId)
     {
         $note = Note::where('id', $noteId)->first();
+        $this->authorize('delete', $note);
         $note->delete();
     }
 }; ?>
@@ -28,7 +29,8 @@ new class extends Component {
             <div class="p-3 border rounded-xl border-rose-500 bg-rose-50 shadow-lg" wire:key='$note->id'>
 
                 <p class="font-bold flex justify-between text-rose-900">
-                    <span><a class="hover:underline hover:text-rose-700" href="">{{ $note->title }}</a></span>
+                    <span><a class="hover:underline hover:text-rose-700" href="{{ route('notes.edit', $note) }}"
+                            wire:navigate>{{ $note->title }}</a></span>
                     <span class="text-sm  font-normal">
                         {{ \Carbon\Carbon::parse($note->send_date)->format('M/d/Y') }}</span>
                 </p>
