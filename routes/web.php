@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -11,6 +12,20 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::view('notes', 'notes.index')
+    ->middleware(['auth', 'verified'])
+    ->name('notes.index');
+
+Route::view('notes/create', 'notes.create')
+    ->middleware(['auth', 'verified'])
+    ->name('notes.create');
+
+    Route::view('notes/show', 'notes.show')
+    ->middleware(['auth', 'verified'])
+    ->name('notes.show');
+
+// Route::resource('notes', NoteController::class)->middleware(['auth', 'verified']);
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
